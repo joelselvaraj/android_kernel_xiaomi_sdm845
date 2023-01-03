@@ -51,6 +51,12 @@
 
 #define STR_BUFFER_MAX_LENGTH  1024
 
+#define DEBUG_CAMSS 1
+
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
+#define CAMSS_DEBUG(debug_msg, args...) if(DEBUG_CAMSS) printk("CAMSS_DEBUG: %s: %d: %s: " debug_msg "\n", __FILENAME__, __LINE__, __func__, ##args)
+
 /*
  *  cam_debug_log()
  *
