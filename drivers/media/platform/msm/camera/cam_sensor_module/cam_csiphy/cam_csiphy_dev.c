@@ -117,6 +117,8 @@ static int32_t cam_csiphy_platform_probe(struct platform_device *pdev)
 	struct csiphy_device *new_csiphy_dev;
 	int32_t              rc = 0;
 
+	CAMSS_DEBUG();
+
 	new_csiphy_dev = devm_kzalloc(&pdev->dev,
 		sizeof(struct csiphy_device), GFP_KERNEL);
 	if (!new_csiphy_dev)
@@ -210,6 +212,8 @@ static int32_t cam_csiphy_device_remove(struct platform_device *pdev)
 		platform_get_drvdata(pdev);
 	struct csiphy_device *csiphy_dev =
 		v4l2_get_subdevdata(subdev);
+
+	CAMSS_DEBUG();
 
 	cam_cpas_unregister_client(csiphy_dev->cpas_handle);
 	cam_csiphy_soc_release(csiphy_dev);

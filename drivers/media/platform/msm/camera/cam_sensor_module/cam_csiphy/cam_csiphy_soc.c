@@ -81,6 +81,8 @@ int32_t cam_csiphy_enable_hw(struct csiphy_device *csiphy_dev)
 	int32_t rc = 0;
 	struct cam_hw_soc_info   *soc_info;
 
+	CAMSS_DEBUG("CSIPHY - ENTER");
+
 	soc_info = &csiphy_dev->soc_info;
 
 	if (csiphy_dev->ref_count++) {
@@ -106,19 +108,21 @@ int32_t cam_csiphy_enable_hw(struct csiphy_device *csiphy_dev)
 	}
 
 	cam_csiphy_reset(csiphy_dev);
-
+	CAMSS_DEBUG("CSIPHY - EXIT");
 	return rc;
 
 
 csiphy_disable_platform_resource:
 	cam_soc_util_disable_platform_resource(soc_info, true, true);
-
+	CAMSS_DEBUG("CSIPHY - EXIT");
 	return rc;
 }
 
 int32_t cam_csiphy_disable_hw(struct csiphy_device *csiphy_dev)
 {
 	struct cam_hw_soc_info   *soc_info;
+
+	CAMSS_DEBUG("CSIPHY - ENTER");
 
 	if (!csiphy_dev || !csiphy_dev->ref_count) {
 		CAM_ERR(CAM_CSIPHY, "csiphy dev NULL / ref_count ZERO");
@@ -135,6 +139,8 @@ int32_t cam_csiphy_disable_hw(struct csiphy_device *csiphy_dev)
 	cam_csiphy_reset(csiphy_dev);
 
 	cam_soc_util_disable_platform_resource(soc_info, true, true);
+
+	CAMSS_DEBUG("CSIPHY - EXIT");
 
 	return 0;
 }
