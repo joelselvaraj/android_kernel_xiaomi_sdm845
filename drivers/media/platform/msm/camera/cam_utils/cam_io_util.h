@@ -236,4 +236,31 @@ int32_t cam_io_w_mb_offset_val_block(const uint32_t data[][2],
  */
 int cam_io_dump(void __iomem *base_addr, uint32_t start_offset, int size);
 
+
+#define cam_io_w_debug(base, val, addr, comment, args...) {\
+	u32 reg = addr - base; \
+	CAMSS_DEBUG("cam_io_w: base - 0x%x, reg - 0x%x, addr - 0x%x, val - 0x%x | " comment, base, reg, addr, val, ##args); \
+	cam_io_w(val, addr); \
+}
+
+#define cam_io_w_mb_debug(base, val, addr, comment, args...) {\
+	u32 reg = addr - base; \
+	CAMSS_DEBUG("cam_io_w_mb: base - 0x%x, reg - 0x%x, addr - 0x%x, val - 0x%x | " comment, base, reg, addr, val, ##args); \
+	cam_io_w_mb(val, addr); \
+}
+
+#define cam_io_r_debug(base, addr, comment, args...) ({\
+	u32 reg = addr - base; \
+	u32 val = cam_io_r(addr); \
+	CAMSS_DEBUG("cam_io_r: base - 0x%x, reg - 0x%x, addr - 0x%x, val - 0x%x | " comment, base, reg, addr, val, ##args); \
+	val; \
+})
+
+#define cam_io_r_mb_debug(base, addr, comment, args...) ({\
+	u32 reg = addr - base; \
+	u32 val = cam_io_r_mb(addr); \
+	CAMSS_DEBUG("cam_io_r_mb: base - 0x%x, reg - 0x%x, addr - 0x%x, val - 0x%x | " comment, base, reg, addr, val, ##args); \
+	val; \
+})
+
 #endif /* _CAM_IO_UTIL_H_ */
