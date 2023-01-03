@@ -247,6 +247,8 @@ int cam_cpas_stop(uint32_t client_handle)
 {
 	int rc;
 
+	CAMSS_DEBUG();
+
 	if (!CAM_CPAS_INTF_INITIALIZED()) {
 		CAM_ERR(CAM_CPAS, "cpas intf not initialized");
 		return -ENODEV;
@@ -275,6 +277,8 @@ int cam_cpas_start(uint32_t client_handle,
 	struct cam_ahb_vote *ahb_vote, struct cam_axi_vote *axi_vote)
 {
 	int rc;
+
+	CAMSS_DEBUG();
 
 	if (!CAM_CPAS_INTF_INITIALIZED()) {
 		CAM_ERR(CAM_CPAS, "cpas intf not initialized");
@@ -306,6 +310,8 @@ int cam_cpas_unregister_client(uint32_t client_handle)
 {
 	int rc;
 
+	CAMSS_DEBUG();
+
 	if (!CAM_CPAS_INTF_INITIALIZED()) {
 		CAM_ERR(CAM_CPAS, "cpas intf not initialized");
 		return -ENODEV;
@@ -331,6 +337,8 @@ int cam_cpas_register_client(
 	struct cam_cpas_register_params *register_params)
 {
 	int rc;
+
+	CAMSS_DEBUG();
 
 	if (!CAM_CPAS_INTF_INITIALIZED()) {
 		CAM_ERR(CAM_CPAS, "cpas intf not initialized");

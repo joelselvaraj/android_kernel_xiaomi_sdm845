@@ -619,6 +619,8 @@ static int cam_cpas_util_apply_client_axi_vote(
 	uint64_t camnoc_bw = 0, mnoc_bw = 0;
 	int rc = 0;
 
+	CAMSS_DEBUG();
+
 	if (!axi_port) {
 		CAM_ERR(CAM_CPAS, "axi port does not exists");
 		return -EINVAL;
@@ -798,6 +800,8 @@ static int cam_cpas_util_apply_client_ahb_vote(struct cam_hw_info *cpas_hw,
 	enum cam_vote_level highest_level;
 	int i, rc = 0;
 
+	CAMSS_DEBUG();
+
 	if (!ahb_bus_client->valid) {
 		CAM_ERR(CAM_CPAS, "AHB Bus client not valid");
 		return -EINVAL;
@@ -926,6 +930,8 @@ static int cam_cpas_hw_start(void *hw_priv, void *start_args,
 	int rc;
 	struct cam_cpas_private_soc *soc_private = NULL;
 
+	CAMSS_DEBUG();
+
 	if (!hw_priv || !start_args) {
 		CAM_ERR(CAM_CPAS, "Invalid arguments %pK %pK",
 			hw_priv, start_args);
@@ -1033,6 +1039,9 @@ static int cam_cpas_hw_start(void *hw_priv, void *start_args,
 	CAM_DBG(CAM_CPAS, "client=[%d][%s][%d] streamon_clients=%d",
 		client_indx, cpas_client->data.identifier,
 		cpas_client->data.cell_index, cpas_core->streamon_clients);
+	CAMSS_DEBUG("client=[%d][%s][%d] streamon_clients=%d",
+		client_indx, cpas_client->data.identifier,
+		cpas_client->data.cell_index, cpas_core->streamon_clients);
 done:
 	mutex_unlock(&cpas_core->client_mutex[client_indx]);
 	mutex_unlock(&cpas_hw->hw_mutex);
@@ -1057,6 +1066,8 @@ static int cam_cpas_hw_stop(void *hw_priv, void *stop_args,
 	struct cam_cpas_private_soc *soc_private = NULL;
 	int rc = 0;
 	long result;
+
+	CAMSS_DEBUG();
 
 	if (!hw_priv || !stop_args) {
 		CAM_ERR(CAM_CPAS, "Invalid arguments %pK %pK",
